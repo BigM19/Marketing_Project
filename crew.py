@@ -1,9 +1,7 @@
-from typing import List
 from crewai import Agent, Crew, Task, LLM, Process
 from crewai.project import CrewBase, agent, crew, task
 
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, DirectoryReadTool, FileWriterTool, FileReadTool
-from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 _ = load_dotenv()
@@ -86,4 +84,18 @@ class MarketingCrew():
             allow_delegation=True,
             max_iterations=3,
             max_rpm=3
+        )
+        
+    @task
+    def market_research(self) -> Task:
+        return Task(
+            config=self.tasks_config["market_research"],
+            agent=self.head_of_marketing()
+        )
+        
+    @task
+    def prepare_marketing_strategy(self) -> Task:
+        return Task(
+            config=self.tasks_config["prepare_marketing_strategy"],
+            agent=self.head_of_marketing()
         )
