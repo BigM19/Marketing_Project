@@ -33,3 +33,57 @@ class MarketingCrew():
             allow_delegation=True,
             max_rpm=3
         )
+        
+    @agent
+    def content_creator_social_media(self) -> Agent:
+        return Agent(
+            config=self.agents_config["content_creator_social_media"],
+            tools=[
+                SerperDevTool(),
+                ScrapeWebsiteTool(),
+                DirectoryReadTool("resources/drafts"),
+                FileWriterTool(),
+                FileReadTool()
+            ],
+            inject_date=True,
+            llm=llm,
+            allow_delegation=True,
+            max_iterations=30,
+            max_rpm=3
+        )
+        
+    @agent
+    def content_writer_blogs(self) -> Agent:
+        return Agent(
+            config=self.agents_config["content_writer_blogs"],
+            tools=[
+                SerperDevTool(),
+                ScrapeWebsiteTool(),
+                DirectoryReadTool("resources/drafts"),
+                FileWriterTool(),
+                FileReadTool()
+            ],
+            inject_date=True,
+            llm=llm,
+            allow_delegation=True,
+            max_iterations=5,
+            max_rpm=3
+        )
+        
+    @agent
+    def seo_specialist(self) -> Agent:
+        return Agent(
+            config=self.agents_config["seo_specialist"],
+            tools=[
+                SerperDevTool(),
+                ScrapeWebsiteTool(),
+                DirectoryReadTool("resources/drafts"),
+                FileWriterTool(),
+                FileReadTool()
+            ],
+            inject_date=True,
+            llm=llm,
+            allow_delegation=True,
+            max_iterations=3,
+            max_rpm=3
+        )
