@@ -114,7 +114,7 @@ class MarketingCrew():
         return Task(
             config=self.tasks_config["prepare_post_drafts"],
             agent=self.content_creator_social_media(),
-            output_json=Content
+            output_pydantic=Content
         )
         
     @task
@@ -122,7 +122,7 @@ class MarketingCrew():
         return Task(
             config=self.tasks_config["prepare_scripts_for_reels"],
             agent=self.content_creator_social_media(),
-            output_json=Content
+            output_pydantic=Content
         )
         
     @task
@@ -137,7 +137,7 @@ class MarketingCrew():
         return Task(
             config=self.tasks_config["draft_blogs"],
             agent=self.content_writer_blogs(),
-            output_json=Content
+            output_pydantic=Content
         )
         
     @task
@@ -145,7 +145,7 @@ class MarketingCrew():
         return Task(
             config=self.tasks_config["seo_optimization"],
             agent=self.seo_specialist(),
-            output_json=Content
+            output_pydantic=Content
         )
         
     @crew
