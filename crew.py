@@ -100,3 +100,49 @@ class MarketingCrew():
             config=self.tasks_config["prepare_marketing_strategy"],
             agent=self.head_of_marketing()
         )
+        
+    @task 
+    def create_content_calendar(self) -> Task:
+        return Task(
+            config=self.tasks_config["create_content_calendar"],
+            agent=self.content_creator_social_media()
+        )
+        
+    @task
+    def prepare_post_drafts(self) -> Task:
+        return Task(
+            config=self.tasks_config["prepare_post_drafts"],
+            agent=self.content_creator_social_media(),
+            output_json=Content
+        )
+        
+    @task
+    def prepare_scripts_for_reels(self) -> Task:
+        return Task(
+            config=self.tasks_config["prepare_scripts_for_reels"],
+            agent=self.content_creator_social_media(),
+            output_json=Content
+        )
+        
+    @task
+    def content_research_for_blogs(self) -> Task:
+        return Task(
+            config=self.tasks_config["content_research_for_blogs"],
+            agent=self.content_writer_blogs()
+        )
+        
+    @task
+    def draft_blogs(self) -> Task:
+        return Task(
+            config=self.tasks_config["draft_blogs"],
+            agent=self.content_writer_blogs(),
+            output_json=Content
+        )
+        
+    @task
+    def seo_optimization(self) -> Task:
+        return Task(
+            config=self.tasks_config["seo_optimization"],
+            agent=self.seo_specialist(),
+            output_json=Content
+        )
