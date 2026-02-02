@@ -4,6 +4,7 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, DirectoryReadTool, FileWriterTool, FileReadTool
 from dotenv import load_dotenv
 from content import Content
+from datetime import datetime
 
 _ = load_dotenv()
 
@@ -146,3 +147,28 @@ class MarketingCrew():
             agent=self.seo_specialist(),
             output_json=Content
         )
+        
+    @crew
+    def marketing_crew(self) -> Crew:
+        """Creates the marketing crew with all agents and tasks."""
+        return Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            process=Process.sequential,
+            verbose=True,
+            planning=True, 
+            planning_llm=llm,
+            max_rpm=3
+        )
+        
+if __name__ == "__main__":
+    inputs = {
+        "product_name": "AI Powered Excel Automation Tool",
+        "target_audience": "Small and Medium Enterprises (SMEs)",
+        "product_description": "A tool that automates repetitive tasks in Excel using AI, saving time and reducing errors.",
+        "budget": "Rs. 50,000",
+        "current_date": datetime.now().strftime("%Y-%m-%d"),
+    }
+    crew = MarketingCrew()
+    crew.marketing_crew().kickoff(inputs=inputs)
+    print("Marketing crew has been successfully created and run.")
