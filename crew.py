@@ -3,6 +3,7 @@ from crewai.project import CrewBase, agent, crew, task
 
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, DirectoryReadTool, FileWriterTool, FileReadTool
 from dotenv import load_dotenv
+from content import Content
 
 _ = load_dotenv()
 
