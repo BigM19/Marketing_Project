@@ -1,0 +1,53 @@
+from datetime import datetime
+import pytest
+from crew import MarketingCrew
+import os
+from crewai import Crew, Process
+
+#Test Market Research Task Configuration
+def test_prepare_marketing_strategy_task_config():
+    crew = MarketingCrew()
+    assert "prepare_marketing_strategy" in crew.tasks_config
+    task = crew.prepare_marketing_strategy()
+    assert task.agent == crew.head_of_marketing()
+
+#Test Prepare Marketing Strategy Task Execution
+def test_prepare_marketing_strategy_task():
+    
+    test_dir = "test_data/resources"
+    os.makedirs(test_dir, exist_ok=True)
+    test_path = os.path.join(test_dir, "test_marketing_strategy.md")
+    # Clean up old test files if they exist
+    if os.path.exists(test_path):
+        os.remove(test_path)
+
+    # Define inputs for the placeholders in tasks.yaml
+    inputs = {
+        "product_name": "Test Excel Tool",
+        "marketing_strategy_path": test_path, # Test-specific path
+        "product_description": "A tool for testing",
+        "target_audience": "Testers",
+        "current_date": datetime.now().strftime("%Y-%m-%d")
+    }
+    
+    #Initialize Crew with test directory
+    crew = MarketingCrew(drafts_dir=test_dir)
+    
+    mini_crew = Crew(
+        agents=[crew.head_of_marketing()],
+        tasks=[crew.prepare_marketing_strategy()],
+        process=Process.sequential
+    )
+    
+    mini_crew.kickoff(inputs=inputs)
+    
+    # Check if the file exists on the disk
+    assert os.path.exists(test_path), f"The markdown report was not created at {test_path}."
+    
+    # Check if the file has actual content
+    with open(test_path, "r", encoding="utf-8", errors="replace") as f:
+        content = f.read()
+        assert len(content) > 0, "The marketing strategy file was created but it is empty."
+        # Verify the content contains key expected sections
+        assert "Marketing Strategy" in content, "The marketing strategy content seems incorrect."
+        assert "Target Audience" in content, "The marketing strategy content seems incorrect."
