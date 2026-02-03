@@ -12,11 +12,11 @@ def test_market_research_task_config():
     assert task.agent == crew.head_of_marketing()
 
 #Test Prepare Marketing Strategy Task Execution
-def test_prepare_marketing_strategy_task():
+def test_market_research_task():
     
     test_dir = "test_data/resources"
     os.makedirs(test_dir, exist_ok=True)
-    test_path = os.path.join(test_dir, "test__market_research.md")
+    test_path = os.path.join(test_dir, "test_market_research.md")
 
     # Clean up old test files if they exist
     if os.path.exists(test_path):
