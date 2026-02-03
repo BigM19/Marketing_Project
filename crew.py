@@ -1,4 +1,4 @@
-from unittest import result
+import os
 from crewai import Agent, Crew, Task, LLM, Process
 from crewai.project import CrewBase, agent, crew, task
 
@@ -9,13 +9,22 @@ from datetime import datetime
 
 _ = load_dotenv()
 
+market_research_path = "drafts/market_research_report.md"
+
 llm = LLM(model="gemini/gemini-2.0-flash-lite", temperature=0.1)
 
 @CrewBase
 class MarketingCrew():
     "The marketing crew is repsonsible for creating and executing marketing strategies"
-    agents_config = "config/agents.yaml"
-    tasks_config = "config/tasks.yaml"
+    
+    def __init__(self, drafts_dir: str = "drafts"):
+        
+        self.drafts_dir = drafts_dir
+        # Ensure the directory exists physically
+        os.makedirs(self.drafts_dir, exist_ok=True)
+        
+        self.agents_config = "config/agents.yaml"
+        self.tasks_config = "config/tasks.yaml"
     
     @agent
     def head_of_marketing(self) -> Agent:
@@ -23,7 +32,7 @@ class MarketingCrew():
             config=self.agents_config["head_of_marketing"],
             tools=[
                 SerperDevTool(),
-                DirectoryReadTool("resources/drafts"),
+                DirectoryReadTool(directory=self.drafts_dir),
                 FileWriterTool(),
                 FileReadTool()
             ],
@@ -39,7 +48,7 @@ class MarketingCrew():
         return Agent(
             config=self.agents_config["content_creator_social_media"],
             tools=[
-                DirectoryReadTool("resources/drafts"),
+                DirectoryReadTool(directory=self.drafts_dir),
                 FileWriterTool(),
                 FileReadTool()
             ],
@@ -55,7 +64,7 @@ class MarketingCrew():
         return Agent(
             config=self.agents_config["content_writer_blogs"],
             tools=[
-                DirectoryReadTool("resources/drafts"),
+                DirectoryReadTool(directory=self.drafts_dir),
                 FileWriterTool(),
                 FileReadTool()
             ],
@@ -71,7 +80,7 @@ class MarketingCrew():
         return Agent(
             config=self.agents_config["seo_specialist"],
             tools=[
-                DirectoryReadTool("resources/drafts"),
+                DirectoryReadTool(directory=self.drafts_dir),
                 FileWriterTool(),
                 FileReadTool()
             ],
@@ -158,6 +167,7 @@ class MarketingCrew():
 if __name__ == "__main__":
     inputs = {
         "product_name": "AI Powered Excel Automation Tool",
+        "market_research_path": market_research_path,
         "target_audience": "Small and Medium Enterprises (SMEs)",
         "product_description": "A tool that automates repetitive tasks in Excel using AI, saving time and reducing errors.",
         "budget": "Rs. 50,000",

@@ -14,6 +14,7 @@ market_research: #Head of Marketing
     - Competitor analysis
     - Customer insights and needs
     - Recommendations for marketing strategies
+    Store the final report in '{market_research_path}'.
 
 prepare_marketing_strategy: # Head of Marketing
   description: >
