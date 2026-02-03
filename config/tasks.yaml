@@ -1,4 +1,4 @@
-market_research:
+market_research: #Head of Marketing
   description: >
     Conduct market research to identify trends, opportunities, and challenges in the industry. Focus on understanding customer needs, competitor strategies, and market dynamics to inform marketing decisions.
     <Product Name>{product_name}</Product Name>
@@ -15,7 +15,7 @@ market_research:
     - Customer insights and needs
     - Recommendations for marketing strategies
 
-prepare_marketing_strategy:
+prepare_marketing_strategy: # Head of Marketing
   description: >
     Develop a marketing strategy that aligns with the company's goals and objectives. The strategy should include target audience segmentation, positioning, messaging, and marketing channels.
     <Product Name>{product_name}</Product Name>
@@ -34,7 +34,7 @@ prepare_marketing_strategy:
     - Key performance indicators (KPIs) to measure success
     Store the marketing strategy in 'resources/drafts/marketing_strategy.md'.
 
-create_content_calendar:
+create_content_calendar: # Content Creator 
   description: >
     Create a content calendar that outlines the topics, formats, and publishing schedule for the next one week. The calendar should align with the marketing strategy and include key themes and campaigns.
     <Product Name>{product_name}</Product Name>
@@ -50,7 +50,7 @@ create_content_calendar:
     - Key themes and campaigns
     Store the content calendar in 'resources/drafts/content_calendar.md'.
 
-prepare_post_drafts:
+prepare_post_drafts: # Content Creator
   description: >
     Prepare drafts for social media posts and email campaigns based on the content calendar. Ensure that the drafts are engaging, aligned with the brand voice, and optimized for each platform.
     <Product Name>{product_name}</Product Name>
@@ -65,7 +65,7 @@ prepare_post_drafts:
     - Email campaigns
     Each draft should be ready for review and feedback. Save the drafts in 'resources/drafts/posts/' folder in markdown format.
 
-prepare_scripts_for_reels:
+prepare_scripts_for_reels: # Content Creator 
   description: >
     Prepare scripts for Instagram reels that align with the content calendar and marketing strategy. The scripts should be engaging, concise, and tailored to the target audience.
     <Product Name>{product_name}</Product Name>
@@ -81,7 +81,7 @@ prepare_scripts_for_reels:
     - Call to action
     Each script should be ready for filming and editing. Save the scripts in 'resources/drafts/reels/' folder in markdown format. And assign tasks to the relevant team members.
 
-content_research_for_blogs:
+content_research_for_blogs: # Content Writer
   description: >
     Conduct research for blog topics that align with the content calendar and marketing strategy. The research should include keyword analysis, competitor blogs, and industry trends.
     <Product Name>{product_name}</Product Name>
@@ -97,7 +97,7 @@ content_research_for_blogs:
     - Industry trends
     - Suggested blog topics and outlines
 
-draft_blogs:
+draft_blogs: # Content Writer
   description: >
     Draft blogs based on the research report and content calendar. Each blog should be well-structured, engaging, and optimized for SEO.
     <Product Name>{product_name}</Product Name>
@@ -114,7 +114,7 @@ draft_blogs:
     - Ready for review and feedback
     Each draft should be ready for review and saved in 'resources/drafts/blogs/' folder in markdown format.
 
-seo_optimization:
+seo_optimization: # SEO Specialist
   description: >
     Optimize the drafted blogs for search engines to improve visibility and drive organic traffic. This includes keyword optimization, meta tags, and internal linking.
     <Product Name>{product_name}</Product Name>
