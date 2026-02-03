@@ -33,7 +33,7 @@ prepare_marketing_strategy: # Head of Marketing
     - Recommended marketing channels
     - Plan of action for the week containing 3 blogs to write, 2 reels to film, and 5 social media posts to create
     - Key performance indicators (KPIs) to measure success
-    Store the marketing strategy in 'resources/drafts/marketing_strategy.md'.
+    Store the marketing strategy in '{marketing_strategy_path}'.
 
 create_content_calendar: # Content Creator 
   description: >

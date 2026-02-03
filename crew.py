@@ -10,6 +10,7 @@ from datetime import datetime
 _ = load_dotenv()
 
 market_research_path = "drafts/market_research_report.md"
+marketing_strategy_path = "drafts/marketing_strategy.md"
 
 llm = LLM(model="gemini/gemini-2.0-flash-lite", temperature=0.1)
 
@@ -168,6 +169,7 @@ if __name__ == "__main__":
     inputs = {
         "product_name": "AI Powered Excel Automation Tool",
         "market_research_path": market_research_path,
+        "marketing_strategy_path": marketing_strategy_path,
         "target_audience": "Small and Medium Enterprises (SMEs)",
         "product_description": "A tool that automates repetitive tasks in Excel using AI, saving time and reducing errors.",
         "budget": "Rs. 50,000",
