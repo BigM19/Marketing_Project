@@ -1,7 +1,7 @@
 from crewai import Agent, Crew, Task, LLM, Process
 from crewai.project import CrewBase, agent, crew, task
 
-from crewai_tools import SerperDevTool, ScrapeWebsiteTool, DirectoryReadTool, FileWriterTool, FileReadTool
+from crewai_tools import SerperDevTool, DirectoryReadTool, FileWriterTool, FileReadTool
 from dotenv import load_dotenv
 from content import Content
 from datetime import datetime
@@ -22,7 +22,6 @@ class MarketingCrew():
             config=self.agents_config["head_of_marketing"],
             tools=[
                 SerperDevTool(),
-                ScrapeWebsiteTool(),
                 DirectoryReadTool("resources/drafts"),
                 FileWriterTool(),
                 FileReadTool()
@@ -40,7 +39,6 @@ class MarketingCrew():
             config=self.agents_config["content_creator_social_media"],
             tools=[
                 SerperDevTool(),
-                ScrapeWebsiteTool(),
                 DirectoryReadTool("resources/drafts"),
                 FileWriterTool(),
                 FileReadTool()
@@ -58,7 +56,6 @@ class MarketingCrew():
             config=self.agents_config["content_writer_blogs"],
             tools=[
                 SerperDevTool(),
-                ScrapeWebsiteTool(),
                 DirectoryReadTool("resources/drafts"),
                 FileWriterTool(),
                 FileReadTool()
@@ -76,7 +73,6 @@ class MarketingCrew():
             config=self.agents_config["seo_specialist"],
             tools=[
                 SerperDevTool(),
-                ScrapeWebsiteTool(),
                 DirectoryReadTool("resources/drafts"),
                 FileWriterTool(),
                 FileReadTool()
