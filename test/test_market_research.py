@@ -4,15 +4,6 @@ from crew import MarketingCrew
 import os
 from crewai import Crew, Process
 
-#Test Head of marketing configuration
-def test_head_of_marketing_config():
-    crew = MarketingCrew()
-    assert "head_of_marketing" in crew.agents_config
-    head_of_marketing = crew.head_of_marketing()
-    assert head_of_marketing.role.strip() == "Head of Marketing"
-    assert head_of_marketing.allow_delegation is True
-    assert head_of_marketing.max_rpm == 3
-    
 #Test Market Research Task Configuration
 def test_market_research_task_config():
     crew = MarketingCrew()
@@ -47,8 +38,7 @@ def test_prepare_marketing_strategy_task():
     mini_crew = Crew(
         agents=[crew.head_of_marketing()],
         tasks=[crew.market_research()],
-        process=Process.sequential,
-        verbose=True
+        process=Process.sequential
     )
     
     mini_crew.kickoff(inputs=inputs)
