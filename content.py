@@ -7,3 +7,6 @@ class Content(BaseModel):
     target_audience: str = Field(..., description="The target audience for the content")
     tags: List[str] = Field(..., description="Tags to be used for the content")
     content: str = Field(..., description="The content itself")
+    
+class ContentList(BaseModel):
+    entries: List[Content]
