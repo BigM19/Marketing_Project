@@ -1,9 +1,10 @@
+from unittest import result
 from crewai import Agent, Crew, Task, LLM, Process
 from crewai.project import CrewBase, agent, crew, task
 
 from crewai_tools import SerperDevTool, DirectoryReadTool, FileWriterTool, FileReadTool
 from dotenv import load_dotenv
-from content import Content
+from content import ContentList
 from datetime import datetime
 
 _ = load_dotenv()
@@ -38,7 +39,6 @@ class MarketingCrew():
         return Agent(
             config=self.agents_config["content_creator_social_media"],
             tools=[
-                SerperDevTool(),
                 DirectoryReadTool("resources/drafts"),
                 FileWriterTool(),
                 FileReadTool()
@@ -55,7 +55,6 @@ class MarketingCrew():
         return Agent(
             config=self.agents_config["content_writer_blogs"],
             tools=[
-                SerperDevTool(),
                 DirectoryReadTool("resources/drafts"),
                 FileWriterTool(),
                 FileReadTool()
@@ -72,7 +71,6 @@ class MarketingCrew():
         return Agent(
             config=self.agents_config["seo_specialist"],
             tools=[
-                SerperDevTool(),
                 DirectoryReadTool("resources/drafts"),
                 FileWriterTool(),
                 FileReadTool()
@@ -110,7 +108,7 @@ class MarketingCrew():
         return Task(
             config=self.tasks_config["prepare_post_drafts"],
             agent=self.content_creator_social_media(),
-            output_pydantic=Content
+            output_pydantic=ContentList
         )
         
     @task
@@ -118,7 +116,7 @@ class MarketingCrew():
         return Task(
             config=self.tasks_config["prepare_scripts_for_reels"],
             agent=self.content_creator_social_media(),
-            output_pydantic=Content
+            output_pydantic=ContentList
         )
         
     @task
@@ -133,7 +131,7 @@ class MarketingCrew():
         return Task(
             config=self.tasks_config["draft_blogs"],
             agent=self.content_writer_blogs(),
-            output_pydantic=Content
+            output_pydantic=ContentList
         )
         
     @task
@@ -141,7 +139,7 @@ class MarketingCrew():
         return Task(
             config=self.tasks_config["seo_optimization"],
             agent=self.seo_specialist(),
-            output_pydantic=Content
+            output_pydantic=ContentList
         )
         
     @crew
@@ -152,7 +150,7 @@ class MarketingCrew():
             tasks=self.tasks,
             process=Process.sequential,
             verbose=True,
-            planning=True, 
+            planning=False, 
             planning_llm=llm,
             max_rpm=3
         )
@@ -166,5 +164,7 @@ if __name__ == "__main__":
         "current_date": datetime.now().strftime("%Y-%m-%d"),
     }
     crew = MarketingCrew()
-    crew.marketing_crew().kickoff(inputs=inputs)
+    result = crew.marketing_crew().kickoff(inputs=inputs)
+
+    
     print("Marketing crew has been successfully created and run.")
