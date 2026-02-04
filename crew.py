@@ -11,6 +11,7 @@ _ = load_dotenv()
 
 market_research_path = "drafts/market_research_report.md"
 marketing_strategy_path = "drafts/marketing_strategy.md"
+content_calendar_path = "drafts/content_calendar.md"
 
 llm = LLM(model="gemini/gemini-2.0-flash-lite", temperature=0.1)
 
@@ -53,6 +54,7 @@ class MarketingCrew():
                 FileWriterTool(),
                 FileReadTool()
             ],
+            reasoning=True,
             inject_date=True,
             llm=llm,
             allow_delegation=True,
@@ -110,7 +112,7 @@ class MarketingCrew():
     def create_content_calendar(self) -> Task:
         return Task(
             config=self.tasks_config["create_content_calendar"],
-            agent=self.content_creator_social_media()
+            agent=self.content_creator_social_media(),
         )
         
     @task
@@ -170,6 +172,7 @@ if __name__ == "__main__":
         "product_name": "AI Powered Excel Automation Tool",
         "market_research_path": market_research_path,
         "marketing_strategy_path": marketing_strategy_path,
+        "content_calendar_path": content_calendar_path,
         "target_audience": "Small and Medium Enterprises (SMEs)",
         "product_description": "A tool that automates repetitive tasks in Excel using AI, saving time and reducing errors.",
         "budget": "Rs. 50,000",
