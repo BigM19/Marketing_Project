@@ -37,7 +37,7 @@ prepare_marketing_strategy: # Head of Marketing
 
 create_content_calendar: # Content Creator 
   description: >
-    Create a content calendar that outlines the topics, formats, and publishing schedule for the next one week. The calendar should align with the marketing strategy and include key themes and campaigns.
+    Create a content calendar that outlines the topics, formats, and publishing schedule for the next one week. The calendar should align with the marketing strategy that you should read from '{marketing_strategy_path}', and include key themes and campaigns. Use the FileWriter tool to save the content calendar as a markdown file.
     <Product Name>{product_name}</Product Name>
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
@@ -45,11 +45,11 @@ create_content_calendar: # Content Creator
     Current date: {current_date}
 
   expected_output: >
-    A content calendar that includes:
+    A content calendar document that includes:
     - Topics and formats for each piece of content specified in the marketing strategy
     - Publishing schedule
     - Key themes and campaigns
-    Store the content calendar in 'resources/drafts/content_calendar.md'.
+    Store the content calendar in '{content_calendar_path}'.
 
 prepare_post_drafts: # Content Creator
   description: >
